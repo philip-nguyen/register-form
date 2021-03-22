@@ -30,3 +30,7 @@ body {
     float: right ;
     grid-column: 3 / 5 ;
 }
+
+.field {
+    margin-bottom: 10px;
+}

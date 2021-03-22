@@ -2,49 +2,76 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
+        <script src="register.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
     </head>
     <body>
+        <h1>Registration</h1>
+        <hr>
         <form class='wrapper'>
             <div class='box row'>
-                <label class='a' for='userId'>User ID</label>
-                <input class='b' type='text' id='userId' placeholder="Ex. PhilipNguyen"><br/>
-                <label class='a' for='pass'>Password</label>
-                <input class='b' type='password' id='pass'
-                    pattern="[^'\x22]+(?=.*|*\d)(4=.*[A-Za-z]).{7,20}"
+                <div class='field'>
+                    <label class='a' for='userId'>User ID</label>
+                    <input class='b' type='text' id='userId' placeholder="Ex. PhilipNguyen" required>
+                </div>
+                <!-- [^'\x22]+(?=.*|*\d)(4=.*[A-Za-z]).{7,20} -->
+                <div class='field'>
+                    <label class='a' for='pass'>Password</label>
+                    <input class='b' type='password' id='password' required
+                    pattern="(?=.*)(?=.*[A-Za-z]).{7,20}"
                     title="Must be between 7-20 characters in length and include
                     4 alpha characters; 1 numeric character or special character">
-                    <br/>
-                <label class='a' for='pass-retype'>Verify Password</label>
-                <input type='password' id='pass-retype'>
-                <br/>
-                <label class='a' for='email'>Email Address</label>
-                <input type='email' id='email'>
-                <br/>
-                <label class='a' for='email-retype'>Verify Email Address</label>
-                <input type='email' id='email-retype'>
-                <br/>
-                <datalist id='securityqs'>
-                    <option value='Sum of 2 + 3 ='>
-                    <option value='Sum of 100 + 200 ='>
-                    <option value='23 x 100 ='>
-                    <option value='Capital of India?'>
-                    <option value='Capital of USA?'>
-                </datalist>
-                <label class='a' for='security1'>Security Question</label>
-                <input list='securityqs' name='security1' id='security1'>
+                    
+                </div>
+                <div class="field">
+                    <meter max='4' id='password-strength'></meter>
+                    <p id='password-strength-text'></p>
+                </div>
+                <div class='field'>
+                    <label class='a' for='pass-retype'>Verify Password</label>
+                    <input class='b' type='password' id='pass-retype' required
+                    pattern="(?=.*)(?=.*[A-Za-z]).{7,20}"
+                    title="Must match with password">
+                </div>
+                <div class='field'>
+                    <label class='a' for='email'>Email Address</label>
+                    <input class='b' type='email' id='email' placeholder="Enter a valid email address"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                </div>
+                <div class='field'>
+                    <label class='a' for='email-retype'>Verify Email Address</label>
+                    <input class='b' type='email' id='email-retype' placeholder="Re-enter a valid email address"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                </div>
+                <div class='field'>
+                    <datalist id='securityqs'>
+                        <option value='Sum of 2 + 3 ='>
+                        <option value='Sum of 100 + 200 ='>
+                        <option value='23 x 100 ='>
+                        <option value='Capital of India?'>
+                        <option value='Capital of USA?'>
+                    </datalist>
+                    <label class='a' for='security1'>Security Question</label>
+                    <input class='b' list='securityqs' name='security1' id='security1'>
+                </div>
+                <div class='field'>
+                    <label class='a' for='security1-ans'>Security Answer</label>
+                    <input class='b' type='text' id='security1-ans'>
+                </div>
+                <div class='field'>
+                    <label class='a' for='security2'>Security Question</label>
+                    <input class='b' list='securityqs' name='security2' id='security2'>
+                </div>
+                <div class='field'>
+                    <label class='a' for='security2-ans'>Security Answer</label>
+                    <input class='b' type='text' id='security2-ans'>
+                </div>
                 
-                <br/>
-                <label class='a' for='security1-ans'>Security Answer</label>
-                <input type='text' id='security1-ans'>
-                
-                <label class='a' for='security2'>Security Question</label>
-                <input list='securityqs' name='security2' id='security2'>
-                <label class='a' for='security2-ans'>Security Answer</label>
-
-                <input type='text' id='security2-ans'>
                 <label class='a' for='addr'>Address</label>
-                <textarea id='addr' cols=50 rows=4></textarea>
-                <button onclick="">Register</button>
+                <textarea id='addr' cols=46 rows=4></textarea>
+                <p>Enter more interests here</p>
+                <textarea id='addr' cols=46 rows=4></textarea>
+                <button onclick="saveForm()">Register</button>
                 <button>Cancel</button>
             </div>
             
